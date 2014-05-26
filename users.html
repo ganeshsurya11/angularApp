@@ -1,0 +1,49 @@
+<html ng-app="usersApp">
+<head>
+	<title>Demo</title>
+    <script src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+<!--    	<script type="text/javascript" src="js/angular-resource.min.js"></script> -->
+	<script type="text/javascript" src="js/users.js"></script>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/custom.css" type="text/css" rel="stylesheet">
+    
+
+</head>
+<body>
+<div class="container" ng-controller="UsersGetController">
+              <div class="row" style="margin:20px 0 20px 0">
+              	<div class="span12">
+                
+                			    <form class="form-inline" ng-submit="saveUser()">
+                                     <input type="text" name="username"  ng-model="formData.username" placeholder="Username" />
+                                    <input type="text" name="contact" ng-model="formData.contact" placeholder="Contact" />
+                                	<button type="submit" class="btn btn-primary" >Add User</button>
+                                </form>
+                	         
+                </div>
+              </div>
+              <div class="row">
+              	<div class="span12">
+                <table class="table">
+               		<thead>
+                   <tr>
+                    <th>First name</th>
+                    <th>Phone</th>
+                   </tr>
+                   </thead>
+                   <tbody ng-repeat="user in users">
+                        <tr>
+                            <td>{{user.firstname}}</td>
+                            <td>{{user.phone}}</td>
+                        </tr>
+                    </tbody>
+               </table>
+			</div><!--span12 -->
+           </div><!--row -->
+           
+</div><!--container -->
+
+ 
+</body>
+</html>
