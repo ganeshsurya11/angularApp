@@ -12,36 +12,44 @@
 </head>
 <body>
 <div class="container" ng-controller="UsersGetController">
-              <div class="row" style="margin:20px 0 20px 0">
-              	<div class="span12">
-                
-                			    <form class="form-inline" ng-submit="saveUser()">
-                                     <input type="text" name="username"  ng-model="formData.username" placeholder="Username" />
-                                    <input type="text" name="contact" ng-model="formData.contact" placeholder="Contact" />
-                                	<button type="submit" class="btn btn-primary" >Add User</button>
-                                </form>
-                	         
-                </div>
-              </div>
+			<div class="row">
+				<div class="span12">Search: <input type="text" style="width:100%" ng-model="query"></div>
+            </div>	
               <div class="row">
               	<div class="span12">
-                <table class="table">
+                <table class="table table-hover data-table sort display" id="usersTable">
                		<thead>
                    <tr>
-                    <th>First name</th>
-                    <th>Phone</th>
+                   	<th><span ng-click="deleteUser(5)">Index</span></th>
+                    <th>Id</th>
+                    <th><a href="" ng-click="columnToOrder='firstname';reverse=!reverse"> First name </a></th>
+                    <th><a href="" ng-click="columnToOrder='phone';reverse=!reverse"> Phone </a> </th>
+                    <th colspan="2">Action</th>
                    </tr>
                    </thead>
-                   <tbody ng-repeat="user in users">
-                        <tr>
+                   <tbody>
+                        <tr ng-hide="hideRow" data-id="{{user.id}}" ng-repeat="user in users | orderBy:columnToOrder:reverse | filter:query">
+                        	<td>{{$index+1}}</td>
+                            <td>{{user.id}}</td>
                             <td>{{user.firstname}}</td>
                             <td>{{user.phone}}</td>
+                            <td><a href="#">Edit</a></td>
+                            <td><a data-id="{{user.id}}" href="javascript:void(0)" ng-click="deleteUser($event);">Delete</a></td>
                         </tr>
                     </tbody>
                </table>
 			</div><!--span12 -->
            </div><!--row -->
-           
+			
+		  <div class="row" style="margin:20px 0 20px 0">
+              	<div class="span12">
+                    <form class="form-inline" ng-submit="saveUser()">
+                         <input type="text" name="username"  ng-model="formData.username" placeholder="Username" />
+                        <input type="text" name="contact" ng-model="formData.contact" placeholder="Contact" />
+                        <button type="submit" class="btn btn-primary" >Add User</button>
+                    </form>  
+                </div>
+              </div>           
 </div><!--container -->
 
  

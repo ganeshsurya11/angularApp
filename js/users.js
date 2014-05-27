@@ -11,7 +11,8 @@
 	var app =  angular.module("usersApp", []); // Module
 
 	app.controller("UsersGetController", ['$scope', '$http', '$parse', function($scope, $http, $parse){	
-/****Fetch All users from getusers service*******************************************************************************/
+	
+//====Fetch All users from getusers service===============================================================================/
 		$scope.getUsers = function(){
 			$http({
 				method: 'GET',
@@ -33,16 +34,23 @@
 		}
  
 		$scope.getUsers();	// Call get usrs service.
-/****Ended Fetch All users from getusers service*******************************************************************************/
+//====Ended Fetch All users from getusers service===============================================================================/
 		
-/****Save user service*******************************************************************************/
+//====Save user service===============================================================================/
+		$scope.formData = {};
+		
+		$scope.clearForm = function(){
+			this.formData = "";
+			}
+
 		$scope.afterSaveUser = function(data){
 			if(data == "true"){
 					$scope.getUsers(); 
 				}
+				$scope.clearForm();
 		}
 		
-		$scope.formData = {};
+		
 		$scope.saveUser = function(){
 			$http({
 			method: 'POST',
@@ -53,7 +61,27 @@
 			url: 'services/saveuser.php'}).success($scope.afterSaveUser);		
 			
 		}
-							
+		
+//====Delete user service===============================================================================/
+		
+		$scope.afterDeleteUser = function(userId){
+			 $('#usersTable tr[data-id="' + userId + '"]').fadeOut();
+		}
+
+		$scope.deleteUser = function(e){
+			  var userId = $(e.target).data('id');
+			  //alert($(e.target).data('test'));  works properly
+			  if (confirm('Are you sure to delete?')) {
+				$http({
+						method: 'DELETE',
+						params:{userId: userId},
+						url: 'services/deletetuser.php'
+					}).success(function(data){$scope.afterDeleteUser(userId)});
+			  }	 
+		}
+		
+		
+			
 	}]) //UsersGetController ended
  
 })();

@@ -1,0 +1,76 @@
+<html ng-app="myApp">
+<head>
+	<title>Demo</title>
+    <script src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+<!--<script type="text/javascript" src="js/angular-resource.min.js"></script> -->
+	<script type="text/javascript" src="js/usersFilter.js"></script>
+   	<script type="text/javascript" src="js/underscore.js"></script>
+    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/custom.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+ <div class="container">
+ 	<div> 
+    <div ng-controller="TableCtrl"> 
+        
+        <div class="input-group">
+  <input class="form-control"   ng-model="searchText" placeholder="Search" type="search" ng-change="search()" />
+  <span class="input-group-addon">
+      <span class="glyphicon glyphicon-search"></span>
+  </span>
+</div>
+             
+        <table class="table  table-hover data-table sort display">
+             <thead>
+                 <tr>
+                     <th class="EmpId">
+                            <a href="" ng-click="columnToOrder='EmpId';reverse=!reverse">EmpId</a>
+                      </th>
+                     <th class="name">
+                            <a href="" ng-click="columnToOrder='name';reverse=!reverse"> Name </a> 
+                     </th>
+                     <th class="Email">
+                        <a href="" ng-click="columnToOrder='Email';reverse=!reverse"> Email </a> 
+                     </th>    
+                 </tr>
+             </thead> 
+             <tbody>
+                 
+                 <tr ng-repeat="item in filteredList | orderBy:columnToOrder:reverse">
+                     <td>{{item.EmpId}}</td>
+                     <td>{{item.name}}</td>
+                     <td>{{item.Email}}</td>
+                 </tr>
+             </tbody>
+        </table>
+         
+        
+<div class="row">
+  <form class="form-horizontal">
+ 
+    <input type="text" ng-model="newEmpId" class="form-control" placeholder="EmpId">
+ 
+ 
+    <input type="text" ng-model="newName" class="form-control" placeholder="Name">
+ 
+ 
+    <input type="text" ng-model="newEmail" class="form-control" placeholder="Email">
+ 
+ 
+         <button ng-click="add()" type="button" class="btn btn-primary">
+              <span class="glyphicon glyphicon-plus"></span> Add
+        </button> 
+    
+      </form>
+</div>
+
+        
+        
+    </div> <!-- Ends Controller -->
+ 
+    </div>
+ 
+</div> 
+</body>
+</html>
