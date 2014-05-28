@@ -37,13 +37,19 @@
 //====Ended Fetch All users from getusers service===============================================================================/
 		
 //====Save user service===============================================================================/
- 
+ 		
+		$scope.showFlashMsg = function(msg){
+				$(".searchform .span12").append('<div class="alert">'+msg+'</div>');
+				setTimeout(function(){ $(".alert").fadeOut() }, 4000);
+			}
+ 	
 		$scope.clearForm = function(){
 			$scope.newuser = "";
 			}
-
+		
 		$scope.afterSaveUser = function(data){
 			if(data == "true"){
+					$scope.showFlashMsg("User Saved successfully !");
 					$scope.getUsers(); 
 				}
 				$scope.clearForm();
@@ -81,6 +87,7 @@
 //====Delete user service===============================================================================/
 		
 		$scope.afterDeleteUser = function(userId, data){
+			$scope.showFlashMsg("User delete successfully !");
 			 $('#usersTable tr[data-id="' + userId + '"]').fadeOut();
 		}
 

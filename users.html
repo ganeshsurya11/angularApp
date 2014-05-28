@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container" ng-controller="UsersGetController">
-			<div class="row">
+			<div class="row searchform">
 				<div class="span12">Search: <input type="text" style="width:100%" ng-model="query"></div>
             </div>	
               <div class="row">
@@ -44,9 +44,9 @@
 		  <div class="row" style="margin:20px 0 20px 0">
               	<div class="span12">
                     <form class="form-inline" ng-submit="saveUser()">
-                         <input type="text" name="id"  ng-model="newuser.id" placeholder="Id" readonly/>
-                         <input type="text" name="username"  ng-model="newuser.firstname" placeholder="First name" />
-                        <input type="text" name="contact" ng-model="newuser.phone" placeholder="Contact" />
+                         <input type="text"  ng-model="newuser.id" placeholder="Id" readonly/>
+                         <input type="text"  ng-model="newuser.firstname" placeholder="First name" />
+                        <input type="text" ng-model="newuser.phone" placeholder="Contact" />
                         <button type="submit" class="btn btn-primary" >Add User</button>
                     </form>  
                 </div>
