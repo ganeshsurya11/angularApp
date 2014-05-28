@@ -3,6 +3,7 @@ ini_set('display_errors', 1);
  $con = mysql_connect("localhost", "root", "");
 $db = mysql_select_db("service");
 
+//echo $_SERVER["REQUEST_METHOD"];
  
 $id = $_GET['userId'];
 if(isset($id)){

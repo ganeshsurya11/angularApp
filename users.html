@@ -33,7 +33,7 @@
                             <td>{{user.id}}</td>
                             <td>{{user.firstname}}</td>
                             <td>{{user.phone}}</td>
-                            <td><a href="#">Edit</a></td>
+                            <td><a href="#" ng-click="editUser(user.id)">Edit</a></td>
                             <td><a data-id="{{user.id}}" href="javascript:void(0)" ng-click="deleteUser($event);">Delete</a></td>
                         </tr>
                     </tbody>
@@ -44,8 +44,9 @@
 		  <div class="row" style="margin:20px 0 20px 0">
               	<div class="span12">
                     <form class="form-inline" ng-submit="saveUser()">
-                         <input type="text" name="username"  ng-model="formData.username" placeholder="Username" />
-                        <input type="text" name="contact" ng-model="formData.contact" placeholder="Contact" />
+                         <input type="text" name="id"  ng-model="newuser.id" placeholder="Id" readonly/>
+                         <input type="text" name="username"  ng-model="newuser.firstname" placeholder="First name" />
+                        <input type="text" name="contact" ng-model="newuser.phone" placeholder="Contact" />
                         <button type="submit" class="btn btn-primary" >Add User</button>
                     </form>  
                 </div>

@@ -37,10 +37,9 @@
 //====Ended Fetch All users from getusers service===============================================================================/
 		
 //====Save user service===============================================================================/
-		$scope.formData = {};
-		
+ 
 		$scope.clearForm = function(){
-			this.formData = "";
+			$scope.newuser = "";
 			}
 
 		$scope.afterSaveUser = function(data){
@@ -52,19 +51,36 @@
 		
 		
 		$scope.saveUser = function(){
+			$scope.method = ($scope.newuser.id != null)? "PUT" : "POST";
 			$http({
-			method: 'POST',
+			method: $scope.method,
 			params: {
-						username: this.formData.username,
-						contact: this.formData.contact, 
+						id: $scope.newuser.id,
+						firstname: $scope.newuser.firstname,
+						phone: $scope.newuser.phone, 
 					},
 			url: 'services/saveuser.php'}).success($scope.afterSaveUser);		
 			
 		}
+
+//====Delete user service===============================================================================/
+		$scope.editUser = function(id){
+				for(i in $scope.users) {
+					//alert($scope.users[0].id);
+					if($scope.users[i].id == id) {
+						//we use angular.copy() method to create
+						//copy of original object
+						$scope.newuser = $scope.users[i]; //angular.copy($scope.users[i]);
+
+						console.log($scope.myuser);
+						 
+					}
+				}
+			}
 		
 //====Delete user service===============================================================================/
 		
-		$scope.afterDeleteUser = function(userId){
+		$scope.afterDeleteUser = function(userId, data){
 			 $('#usersTable tr[data-id="' + userId + '"]').fadeOut();
 		}
 
@@ -76,7 +92,7 @@
 						method: 'DELETE',
 						params:{userId: userId},
 						url: 'services/deletetuser.php'
-					}).success(function(data){$scope.afterDeleteUser(userId)});
+					}).success(function(data){console.log(data); $scope.afterDeleteUser(userId)});
 			  }	 
 		}
 		
