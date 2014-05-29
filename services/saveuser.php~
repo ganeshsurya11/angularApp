@@ -1,6 +1,8 @@
 <?php
 
-include_once("../config.php");
+$con = mysql_connect("localhost", "root", "");
+$db = mysql_select_db("service");
+
 
 $id 		=	isset($_REQUEST['id']) ? $_REQUEST['id'] : "";
 $firstname 	=	isset($_REQUEST['firstname'])? $_REQUEST['firstname'] : "";
