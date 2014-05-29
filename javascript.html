@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript">
+/***********JS object******************************************/
+	function myTest(m){
+		this.getusername = function(){
+			return "ganesh";
+		}
+		this.suranme = "Suryawanhi";
+		//console.log(m + "myTest instantiated");
+	}
+	var om = new myTest(102);
+	//console.log(om.getusername()+ " "+om.suranme);
+	//console.log(om.constructor.name);
+	
+/***********JS object ended*****************************************/
+
+/***********Another way JS object******************************************/
+var users = {}; 
+users.list = function(){
+	return [
+		{fname: 'Ganesh', lname: 'SUryawanshi'}
+	]
+}
+//console.log(users.list());
+
+
+/***********JS inheritance******************************************/
+
+function Car(name, vobject){
+	//vobject.model = "v 555";
+	this.name = "My car name is "+ name + " and model is "+vobject.model;
+}
+
+function Vehicle(m){
+	this.model = "Model no is "+m;
+}
+
+var vobject = new Vehicle("V 22");
+var Car = new Car("Volvo", vobject);
+
+console.log(vobject.model);
+ 
+
+
+</script>
+</head>
+
+<body>
+</body>
+</html>
