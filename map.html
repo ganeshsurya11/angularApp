@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Google Map set and get locations</title>
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="css/custom.css" type="text/css" rel="stylesheet">
+ <script src="js/jquery.js"></script>
+<script src="gmap/location.js"></script>
+</head>
+<body>
+<div class="container">
+ <div class="row row-main">
+ <Br/>
+	<div class="span12">
+				<form name="locationform" class="no-vertical-margin form-horizontal" id="locationform" action="LocationServlet" method="POST">
+						<input type="hidden" name="operationType" value="add" />	
+						<input type="hidden" name="locationid" />
+        
+                    	<div class="control-group">
+                			<label class="control-label" for="location_geocode">Geocode</label>
+		                	<div class="controls">
+		                		<input type="text" name="location_geocode" id="location_geocode" readonly="readonly" />
+		                		<p class="hint">(select location of your interest and click on map to add geocode)</p>
+		                	</div>
+                		</div>
+    		<div class="controls"> 
+        <button class="btn btn-warning btn-large" type="submit">Save</button>
+         <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Cancel</button>
+         </div>
+	</form>
+    </div><!-- /span12 -->
+ </div><!-- /row -->
+	
+    <div class="row">
+    	<div class="span12"  id="map_canvas_loc" style="width:900px; height:500px;">
+        	Map Loading...
+        </div>
+    </div>    
+    
+    <div class="row">
+	<div class="span12">
+    <form name="form" method="post">
+							<input type="hidden" value="Edit" id="FormAction"> 
+							<input type="hidden" value="0" name="iPageNo"> 
+							<input type="hidden" value="0" name="cPageNo"> 
+							<input type="hidden" value="10" name="showRows">
+					
+							<table class="table">
+								<tbody><tr>
+									<!-- <th>Location Id</th> -->
+									<th>Location Name</th>
+									<th>Short Name</th>
+									<th>Location Type</th>
+									<th>Access Level</th>
+									<th>Geocode</th>
+									<th>Remarks</th>
+									<th>&nbsp;</th>
+									<th>&nbsp;</th>
+								</tr>
+								
+								<tr id="tr0">
+									<td id="location_name">Office</td>
+									<td id="location_shortname">Office</td>
+									<td id="location_type">Office</td>
+									<td id="location_accesslevel">
+											Public
+										
+									</td>
+									<td id="location_geocode">21.493963563064455,73.51025372743607</td>
+									<td id="location_remarks">office</td>
+									<td>
+										<a title="Edit" onclick="javascript:setLocationRecordOperation('360435262225909617', 'edit', 'tr0','356850167527245492','1');" href="javascript:void(0)"><i class="fa fa-edit"></i> Edit</a>
+									</td>
+									<td>
+										
+										<!-- ################################################################ -->
+										<a title="Delete" onclick="javascript:setLocationRecordOperation('360435262225909617', 'delete', 'tr0','356850167527245492','1');" data-toggle="modal" href="#confirmLoc"> <i class="fa fa-trash-o"></i> Delete</a>
+										<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="confirmLoc">
+								            <div class="modal-header">
+								            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								            <h3 id="myModalLabel">Confirm</h3>
+								            </div>
+								            <div class="modal-body">
+								            <p>Are you sure you want to delete this record?</p>
+								            </div>
+								            <div class="modal-footer">
+								             <a onclick="document.locationform.btnRefesh.click()" data-dismiss="modal" class="btn" href="javascript:void(0)">Cancel</a>
+											 <a onclick="document.locationform.btnSubmit.click()" class="btn btn-danger" href="javascript:void(0)">Yes</a>
+								            </div>
+								        </div>
+								        <!-- ################################################################ -->
+									</td>
+								</tr>
+								
+								<tr id="tr1">
+									<td id="location_name">Office Bank</td>
+									<td id="location_shortname">OFCBnk</td>
+									<td id="location_type">Office Bank</td>
+									<td id="location_accesslevel">
+											Public
+										
+									</td>
+									<td id="location_geocode">20.014645445341365,73.23522806167603</td>
+									<td id="location_remarks">Office Bank</td>
+									<td>
+										<a title="Edit" onclick="javascript:setLocationRecordOperation('360435730444453747', 'edit', 'tr1','360501532564653965','1');" href="javascript:void(0)"><i class="fa fa-edit"></i> Edit</a>
+									</td>
+									<td>
+										
+										<!-- ################################################################ -->
+										<a title="Delete" onclick="javascript:setLocationRecordOperation('360435730444453747', 'delete', 'tr1','360501532564653965','1');" data-toggle="modal" href="#confirmLoc"> <i class="fa fa-trash-o"></i> Delete</a>
+										<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="confirmLoc">
+								            <div class="modal-header">
+								            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								            <h3 id="myModalLabel">Confirm</h3>
+								            </div>
+								            <div class="modal-body">
+								            <p>Are you sure you want to delete this record?</p>
+								            </div>
+								            <div class="modal-footer">
+								             <a onclick="document.locationform.btnRefesh.click()" data-dismiss="modal" class="btn" href="javascript:void(0)">Cancel</a>
+											 <a onclick="document.locationform.btnSubmit.click()" class="btn btn-danger" href="javascript:void(0)">Yes</a>
+								            </div>
+								        </div>
+								        <!-- ################################################################ -->
+									</td>
+								</tr>
+								
+								<tr id="tr2">
+									<td id="location_name">Home</td>
+									<td id="location_shortname">Home</td>
+									<td id="location_type">Home</td>
+									<td id="location_accesslevel">
+											Public
+										
+									</td>
+									<td id="location_geocode">26.534479888888043,76.71212766319513</td>
+									<td id="location_remarks">Home</td>
+									<td>
+										<a title="Edit" onclick="javascript:setLocationRecordOperation('356960600296785614', 'edit', 'tr2','356850167510468275','1');" href="javascript:void(0)"><i class="fa fa-edit"></i> Edit</a>
+									</td>
+									<td>
+										
+										<!-- ################################################################ -->
+										<a title="Delete" onclick="javascript:setLocationRecordOperation('356960600296785614', 'delete', 'tr2','356850167510468275','1');" data-toggle="modal" href="#confirmLoc"> <i class="fa fa-trash-o"></i> Delete</a>
+										<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="confirmLoc">
+								            <div class="modal-header">
+								            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								            <h3 id="myModalLabel">Confirm</h3>
+								            </div>
+								            <div class="modal-body">
+								            <p>Are you sure you want to delete this record?</p>
+								            </div>
+								            <div class="modal-footer">
+								             <a onclick="document.locationform.btnRefesh.click()" data-dismiss="modal" class="btn" href="javascript:void(0)">Cancel</a>
+											 <a onclick="document.locationform.btnSubmit.click()" class="btn btn-danger" href="javascript:void(0)">Yes</a>
+								            </div>
+								        </div>
+								        <!-- ################################################################ -->
+									</td>
+								</tr>
+								
+								<tr id="tr3">
+									<td id="location_name">Bank</td>
+									<td id="location_shortname">Bank</td>
+									<td id="location_type">Bank</td>
+									<td id="location_accesslevel">
+											Public
+										
+									</td>
+									<td id="location_geocode">22.471954507739227,75.70751935243607</td>
+									<td id="location_remarks">Bank</td>
+									<td>
+										<a title="Edit" onclick="javascript:setLocationRecordOperation('360435442933303154', 'edit', 'tr3','356850167577577143','1');" href="javascript:void(0)"><i class="fa fa-edit"></i> Edit</a>
+									</td>
+									<td>
+										
+										<!-- ################################################################ -->
+										<a title="Delete" onclick="javascript:setLocationRecordOperation('360435442933303154', 'delete', 'tr3','356850167577577143','1');" data-toggle="modal" href="#confirmLoc"> <i class="fa fa-trash-o"></i> Delete</a>
+										<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="confirmLoc">
+								            <div class="modal-header">
+								            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								            <h3 id="myModalLabel">Confirm</h3>
+								            </div>
+								            <div class="modal-body">
+								            <p>Are you sure you want to delete this record?</p>
+								            </div>
+								            <div class="modal-footer">
+								             <a onclick="document.locationform.btnRefesh.click()" data-dismiss="modal" class="btn" href="javascript:void(0)">Cancel</a>
+											 <a onclick="document.locationform.btnSubmit.click()" class="btn btn-danger" href="javascript:void(0)">Yes</a>
+								            </div>
+								        </div>
+								        <!-- ################################################################ -->
+									</td>
+								</tr>
+								
+								
+								<tr>
+									<td colspan="10">
+										<div>
+											
+															<a style="cursor: pointer; color: red" href="location.jsp?iPageNo=1"><b>1</b></a>
+													
+											<b>Rows 1 - 4 Total Rows 4 </b>
+										</div>
+									</td>
+								</tr>
+							</tbody></table>
+						</form>
+           </div></div>
+ 
+</div><!--container -->    
+</body>
+</html>
