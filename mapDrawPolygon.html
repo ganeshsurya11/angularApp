@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html data-ng-app="securityapp">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Safety, with strings attached.">
+    <title>Welcome to Intelligynt</title>
+	 <script src="js/jquery.js"></script>
+     	 <script src="js/geofence.js"></script>
+	<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/custom.css" type="text/css" rel="stylesheet">
+  
+</head>
+<body>
+<!-- ####################################### Middle Container  ################################################-->
+<div class="container">
+	 <div class="gmapBox" style="width:800px; height:500px;">
+	 	<form method="POST" action="GeofenceServlet" id="geofenceform" class="form-horizontal" name="geofenceform">
+	 		<div class="row main-row mb">
+	 			<div class="span5 offset3">
+	 				<input type="hidden" value="add" name="operationType">	
+					<input type="hidden" name="geofenceid">
+					
+					<div class="control-group">
+	                		<label for="emailid" class="control-label">User </label>
+		                	<div class="controls">
+		                		<select id="trackeduserid" name="trackeduserid">
+						 		<option selected="selected" value="">Select user</option>
+								
+							 	<option value="351000175830894392">tusar tusar</option>	 
+							 	
+							 	
+							 	
+							</select>	
+		                	</div>
+	                	</div>
+						<input type="hidden" id="geofence" name="geofence">
+	 			</div><!-- /span12 -->
+			</div><!-- /row -->
+		
+			<div class="row main-row mb">
+	 			<div class="span12">
+	 				<div class="mapButtons">
+                    	<div id="map-canvas" style="width:800px; height:400px;">loading map...</div>
+	 					<a onclick="javascript:createDrawingManager()" class="btn btn-warning btn-small">Draw Geofence</a>
+	 					<a onclick="javascript:deleteSelectedShape()" class="btn btn-small" id="clear" type="reset">Clear map</a>
+	 				</div><!-- /mapButtons -->
+	 				<div id="map-canvas" style="position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"></div>
+	 				<button onclick="javascript:getCordinates()" name="btnSubmit" id="btnSubmit" type="submit" class="btn btn-warning btn-large">Add</button>
+					<button onclick="javascript:refresh()" name="btnRefesh" id="btnRefesh" class="btn btn-large" type="reset">Clear</button>	
+	 			</div><!-- /span12 -->
+	 		</div><!-- /row -->	
+								
+		</form>		
+				
+ 		<div class="row main-row mb">
+ 			<div class="span12">
+			 	
+				<form name="form" method="post">
+					<input type="hidden" value="Edit" id="FormAction"> 
+					<input type="hidden" value="0" name="iPageNo"> 
+					<input type="hidden" value="0" name="cPageNo"> 
+					<input type="hidden" value="10" name="showRows">
+			
+					<table class="table">
+						<tbody><tr>
+							<!-- <th>Location Id</th> -->
+							<th>Tracked User</th>
+							<th>Geofence</th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
+						</tr>
+						
+						<tr id="tr0">
+							<td id="trackeduser">dd dd</td>
+							<td id="geofence">
+								<div id="tr0geofence_div">24.686952411999155,76.39892578125|21.166483858206583,74.267578125|18.916679786648565,78.0908203125|22.69512018496571,81.27685546875</div></td>
+							<td>
+								<a title="Edit" onclick="javascript:setGeofenceRecordOperation('357712435555075821', 'edit', 'tr0', '350302184774043217');" href="javascript:void(0)"><i class="fa fa-edit"></i>Edit</a>
+							</td>
+							<td>
+								
+								<!-- ################################################################ -->
+										<a title="Delete" onclick="javascript:setGeofenceRecordOperation('357712435555075821', 'delete', 'tr0', '350302184774043217');" data-toggle="modal" href="#confirmGeo"> <i class="fa fa-trash-o"></i> Delete</a>
+										<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="confirmGeo">
+								            <div class="modal-header">
+								            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								            <h3 id="myModalLabel">Confirm</h3>
+								            </div>
+								            <div class="modal-body">
+								            <p>Are you sure you want to delete this record?</p>
+								            </div>
+								            <div class="modal-footer">
+								             <a onclick="document.geofenceform.btnRefesh.click()" data-dismiss="modal" class="btn" href="javascript:void(0)">Cancel</a>
+											 <a onclick="document.geofenceform.btnSubmit.click()" class="btn btn-danger" href="javascript:void(0)">Yes</a>
+								            </div>
+								        </div>
+								        <!-- ################################################################ -->
+							</td>
+						</tr>
+						
+						<tr id="tr1">
+							<td id="trackeduser">Ganesh ss Surya</td>
+							<td id="geofence">
+								<div id="tr1geofence_div">24.966140159912975,76.79443359375|24.746831298412058,80.4638671875|23.16056330904831,75.245361328125|21.88188980762927,78.99169921875</div></td>
+							<td>
+								<a title="Edit" onclick="javascript:setGeofenceRecordOperation('357710055849592555', 'edit', 'tr1', '354612913224287516');" href="javascript:void(0)"><i class="fa fa-edit"></i>Edit</a>
+							</td>
+							<td>
+								
+								<!-- ################################################################ -->
+										<a title="Delete" onclick="javascript:setGeofenceRecordOperation('357710055849592555', 'delete', 'tr1', '354612913224287516');" data-toggle="modal" href="#confirmGeo"> <i class="fa fa-trash-o"></i> Delete</a>
+										<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="confirmGeo">
+								            <div class="modal-header">
+								            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								            <h3 id="myModalLabel">Confirm</h3>
+								            </div>
+								            <div class="modal-body">
+								            <p>Are you sure you want to delete this record?</p>
+								            </div>
+								            <div class="modal-footer">
+								             <a onclick="document.geofenceform.btnRefesh.click()" data-dismiss="modal" class="btn" href="javascript:void(0)">Cancel</a>
+											 <a onclick="document.geofenceform.btnSubmit.click()" class="btn btn-danger" href="javascript:void(0)">Yes</a>
+								            </div>
+								        </div>
+								        <!-- ################################################################ -->
+							</td>
+						</tr>
+						
+						<tr id="tr3">
+							<td id="trackeduser">tusar tusar</td>
+							<td id="geofence">
+								<div id="tr3geofence_div">24.627044746156027,77.3876953125|24.70691524106633,74.50927734375|21.514406720030294,75.2783203125|21.53484700204879,81.298828125|25.353954558526684,81.617431640625</div></td>
+							<td>
+								<a title="Edit" onclick="javascript:setGeofenceRecordOperation('357708623368947433', 'edit', 'tr3', '351000175830894392');" href="javascript:void(0)"><i class="fa fa-edit"></i>Edit</a>
+							</td>
+							<td>
+								
+								<!-- ################################################################ -->
+										<a title="Delete" onclick="javascript:setGeofenceRecordOperation('357708623368947433', 'delete', 'tr3', '351000175830894392');" data-toggle="modal" href="#confirmGeo"> <i class="fa fa-trash-o"></i> Delete</a>
+										<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal hide fade" id="confirmGeo">
+								            <div class="modal-header">
+								            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+								            <h3 id="myModalLabel">Confirm</h3>
+								            </div>
+								            <div class="modal-body">
+								            <p>Are you sure you want to delete this record?</p>
+								            </div>
+								            <div class="modal-footer">
+								             <a onclick="document.geofenceform.btnRefesh.click()" data-dismiss="modal" class="btn" href="javascript:void(0)">Cancel</a>
+											 <a onclick="document.geofenceform.btnSubmit.click()" class="btn btn-danger" href="javascript:void(0)">Yes</a>
+								            </div>
+								        </div>
+								        <!-- ################################################################ -->
+							</td>
+						</tr>
+				    </tbody></table>
+				</form>
+			 
+ 				
+ 				
+ 			</div><!-- /span12 -->
+		</div><!-- /row -->
+		
+		
+	</div>
+</div><!--container -->
+ 
+
+
+<script>
+$(document).ready(function () {
+    $(".EmCon").click(function (e) {
+        $('#emguserid').val($(this).data('id'));
+       // $('#addEmergencyContact').modal('show');
+    });
+});
+
+
+var countryname = "India";
+$(document).ready(function() {
+    $("#country").val(countryname);
+});
+
+var ecountryname = "null";
+$(document).ready(function() {
+    $("#ecountry").val(ecountryname);
+});
+
+</script>
+ 
+
+</body>
+</html>
+
